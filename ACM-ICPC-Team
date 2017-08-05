@@ -1,0 +1,47 @@
+import java.io.*;
+import java.util.*;
+import java.math.BigInteger;
+
+public class Solution
+{
+    public static void main(String[] args)
+    {
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt(), m = scan.nextInt(),i;
+        //String temp;
+        String arr[] = new String[n];
+        BitSet skills[] = new BitSet[n];
+        for (int p = 0; p < n; p++)
+        {
+            BigInteger b = new BigInteger(scan.next(), 2);
+            skills[p] = BitSet.valueOf(b.toByteArray());
+        }
+        int j,c=0,d=0;
+        BitSet temp,a=skills[0],b=skills[0];
+        a.or(b);
+        temp=a;
+        for(i=0;i<n;i++)
+        {
+            for(j=i+1;j<n;j++)
+            {
+                a=(BitSet)skills[i].clone();
+                b=(BitSet)skills[j].clone();
+                a.or(b);
+                if(a.cardinality()==temp.cardinality())
+                {
+                    //System.out.println(skills[i]+" "+skills[j]+" "+a+" : Incrementing ");
+                    c++;
+                }
+                else if(a.cardinality()>temp.cardinality())// > = true
+                {
+                   // System.out.println(skills[i]+" "+skills[j]+" "+a+" : Larger found");
+                    temp =(BitSet)a.clone();
+                    c=1;
+                }
+            }
+        }
+       // System.out.println(temp);
+        System.out.println(temp.cardinality());
+        System.out.println(c);
+    }
+}
