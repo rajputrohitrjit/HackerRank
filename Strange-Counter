@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        long t = in.nextLong();
+        long a = 1, b = 3;
+        while(a<t)
+        {
+            //System.out.println(a+":"+b);
+            a += b;
+            b *= 2;
+        }
+        //System.out.println(a+":"+b);
+        if(a!=t)
+        {
+            b /= 2;
+            a -= b;            
+        }
+        //System.out.println(a+":"+b);
+        System.out.println(b-(t-a));
+    }
+}
